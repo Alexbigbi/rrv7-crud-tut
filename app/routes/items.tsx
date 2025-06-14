@@ -2,6 +2,13 @@ import { supabase } from "~/supabase-client";
 import type { Route } from "./+types/items";
 import { Link } from "react-router";
 
+export function meta() {
+    return [
+        {title: `All Your Items | RRV7 Crud`},
+        {name:"description", content:"View your collection of items using our Supabase RRV7 CRUD app."}
+    ]
+}
+
 export async function loader() {
     const {data, error} = await supabase.from("items").select("*");
 
