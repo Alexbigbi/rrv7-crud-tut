@@ -1,7 +1,29 @@
-import { Form } from "react-router";
+import { Form, redirect, type ActionFunctionArgs } from "react-router";
+import { supabase } from "~/supabase-client";
 
-export async function action() {
+export function meta() {
+    return [
+        {title: "New Item | RRV7 Crud"},
+        {name: "description", content: "Create a new item"},
+    ];
+}
 
+export async function action({ request }: ActionFunctionArgs) {
+    const formData = await request.formData();
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+
+    if (!title || !description) {
+        return {error: "Title and content are required."};
+    }
+
+    const { error } = await supabase.from("items").insert({ title, description });
+
+    if (error) {
+        return { error: error.message };
+    }
+
+    return redirect("/");
 }
 
 export default function NewItem() {
