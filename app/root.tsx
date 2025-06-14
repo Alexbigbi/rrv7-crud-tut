@@ -33,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-screen bg-gray-100">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -45,14 +45,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <>
-      <nav>
-        <NavLink to="/"> RRV7 Crud </NavLink>
-        <div>
-          <NavLink to="/"> Items </NavLink>
-          <NavLink to="/new"> New Item </NavLink>
+      <nav className="bg-white shadow p-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <NavLink to="/" className="text-2xl font-bold text-indigo-600"> 
+          RRV7 Crud 
+          </NavLink>
+          <div className="space-x-4">
+            <NavLink to="/" className={({isActive}) => isActive ? "text-indigo-600" : "text-gray-600"}> 
+            Items 
+            </NavLink>
+            <NavLink to="/new" className={({isActive}) => isActive ? "text-indigo-600" : "text-gray-600"}> 
+            New Item 
+            </NavLink>
+          </div>
         </div>
       </nav>
-      <main>
+      <main className="container mx-auto p-4">
         <Outlet />
       </main>
     </>
