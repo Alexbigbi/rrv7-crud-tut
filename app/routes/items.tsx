@@ -23,7 +23,7 @@ export default function Items({ loaderData }: Route.ComponentProps) {
         <ul className="space-y-4">
             {items?.map((item) => (
                 <li className="bg-white p-4 rounded shadow">
-                    <Link to="/" className="block text-indigo-600">
+                    <Link to={`/items/${item.id}`} className="block text-indigo-600">
                         <span className="text-xl font-semibold"> {item.title} </span>
                         <p className="text-gray-600"> {item.description} </p>
                     </Link>
